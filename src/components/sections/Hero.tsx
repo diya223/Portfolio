@@ -23,7 +23,7 @@ export function Hero() {
           className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm text-zinc-300 backdrop-blur-sm"
         >
           <span className="h-2 w-2 animate-pulse rounded-full bg-emerald-400" />
-          Available for opportunitiessssss
+          Available for opportunities
         </motion.div>
 
         <motion.h1
