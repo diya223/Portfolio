@@ -6,6 +6,8 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import type { BlogPost } from "@/types/database";
 
+export const dynamic = "force-dynamic";
+
 type Props = {
   params: Promise<{ slug: string }>;
 };
@@ -58,50 +60,50 @@ function renderMarkdown(content: string) {
   });
 }
 
-// export default async function BlogPostPage({ params }: Props) {
-//   const { slug } = await params;
-//   const supabase = createServerClient();
+export default async function BlogPostPage({ params }: Props) {
+  const { slug } = await params;
+  const supabase = createServerClient();
 
-//   if (!supabase) notFound();
+  if (!supabase) notFound();
 
-//   const { data } = await supabase
-//     .from("blog_posts")
-//     .select("*")
-//     .eq("slug", slug)
-//     .eq("published", true)
-//     .single();
+  const { data } = await supabase
+    .from("blog_posts")
+    .select("*")
+    .eq("slug", slug)
+    .eq("published", true)
+    .single();
 
-//   if (!data) notFound();
+  if (!data) notFound();
 
-//   const post = data as BlogPost;
+  const post = data as BlogPost;
 
-//   return (
-//     <div className="min-h-screen bg-[#0a0a0f] text-white">
-//       <Navbar />
-//       <main className="mx-auto max-w-3xl px-6 pb-24 pt-28">
-//         <Link
-//           href="/blog"
-//           className="mb-8 inline-flex items-center gap-2 text-sm text-zinc-400 transition hover:text-white"
-//         >
-//           <ArrowLeft size={16} />
-//           Back to blog
-//         </Link>
+  return (
+    <div className="min-h-screen bg-[#0a0a0f] text-white">
+      <Navbar />
+      <main className="mx-auto max-w-3xl px-6 pb-24 pt-28">
+        <Link
+          href="/blog"
+          className="mb-8 inline-flex items-center gap-2 text-sm text-zinc-400 transition hover:text-white"
+        >
+          <ArrowLeft size={16} />
+          Back to blog
+        </Link>
 
-//         <div className="mb-2 flex items-center gap-2 text-sm text-zinc-500">
-//           <Calendar size={14} />
-//           {new Date(post.created_at).toLocaleDateString("en-US", {
-//             year: "numeric",
-//             month: "long",
-//             day: "numeric",
-//           })}
-//         </div>
+        <div className="mb-2 flex items-center gap-2 text-sm text-zinc-500">
+          <Calendar size={14} />
+          {new Date(post.created_at).toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          })}
+        </div>
 
-//         <h1 className="text-4xl font-bold tracking-tight">{post.title}</h1>
-//         <p className="mt-4 text-lg text-zinc-400">{post.excerpt}</p>
+        <h1 className="text-4xl font-bold tracking-tight">{post.title}</h1>
+        <p className="mt-4 text-lg text-zinc-400">{post.excerpt}</p>
 
-//         <article className="prose-invert mt-12">{renderMarkdown(post.content)}</article>
-//       </main>
-//       <Footer />
-//     </div>
-//   );
-// }
+        <article className="prose-invert mt-12">{renderMarkdown(post.content)}</article>
+      </main>
+      <Footer />
+    </div>
+  );
+}
