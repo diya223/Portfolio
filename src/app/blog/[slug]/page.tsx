@@ -37,14 +37,14 @@ function renderMarkdown(content: string) {
   return content.split("\n").map((line, i) => {
     if (line.startsWith("# ")) {
       return (
-        <h1 key={i} className="mb-4 mt-8 text-3xl font-bold text-white">
+        <h1 key={i} className="mb-4 mt-8 text-3xl font-bold text-paper">
           {line.slice(2)}
         </h1>
       );
     }
     if (line.startsWith("## ")) {
       return (
-        <h2 key={i} className="mb-3 mt-6 text-2xl font-semibold text-white">
+        <h2 key={i} className="mb-3 mt-6 text-2xl font-semibold text-paper">
           {line.slice(3)}
         </h2>
       );
@@ -53,7 +53,7 @@ function renderMarkdown(content: string) {
       return <br key={i} />;
     }
     return (
-      <p key={i} className="mb-4 leading-relaxed text-zinc-300">
+      <p key={i} className="mb-4 leading-relaxed text-paper/75">
         {line}
       </p>
     );
@@ -78,18 +78,18 @@ export default async function BlogPostPage({ params }: Props) {
   const post = data as BlogPost;
 
   return (
-    <div className="min-h-screen bg-[#0a0a0f] text-white">
+    <div className="min-h-screen bg-ink text-paper">
       <Navbar />
       <main className="mx-auto max-w-3xl px-6 pb-24 pt-28">
         <Link
           href="/blog"
-          className="mb-8 inline-flex items-center gap-2 text-sm text-zinc-400 transition hover:text-white"
+          className="mb-8 inline-flex items-center gap-2 text-sm text-paper/55 transition hover:text-paper"
         >
           <ArrowLeft size={16} />
           Back to blog
         </Link>
 
-        <div className="mb-2 flex items-center gap-2 text-sm text-zinc-500">
+        <div className="mb-2 flex items-center gap-2 text-sm text-paper/40">
           <Calendar size={14} />
           {new Date(post.created_at).toLocaleDateString("en-US", {
             year: "numeric",
@@ -99,7 +99,7 @@ export default async function BlogPostPage({ params }: Props) {
         </div>
 
         <h1 className="text-4xl font-bold tracking-tight">{post.title}</h1>
-        <p className="mt-4 text-lg text-zinc-400">{post.excerpt}</p>
+        <p className="mt-4 text-lg text-paper/55">{post.excerpt}</p>
 
         <article className="prose-invert mt-12">{renderMarkdown(post.content)}</article>
       </main>
