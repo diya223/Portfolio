@@ -46,7 +46,7 @@ export function Footer() {
       <div aria-hidden className="pointer-events-none select-none overflow-hidden">
         <p
           data-footer-name
-          className="text-outline whitespace-nowrap text-center text-[18vw] font-bold uppercase leading-[0.85] tracking-tighter"
+          className="text-outline whitespace-nowrap text-center text-[16vw] font-bold uppercase leading-[0.85] tracking-tighter"
         >
           {siteConfig.name}
         </p>
